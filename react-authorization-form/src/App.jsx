@@ -5,6 +5,7 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -12,7 +13,7 @@ const App = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +24,9 @@ const App = () => {
     }
 
     setMessage('Successfully signed in!');
-  }
+    setEmail('');
+    setPassword('');
+  };
 
   return (
     <main className="page">
@@ -49,19 +52,27 @@ const App = () => {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               placeholder="Enter your password"
               value={password}
               onChange={handlePasswordChange}
             />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="toggle-password-button"
+            >
+              {showPassword ? 'Hide Password' : 'Show Password'}
+            </button>
           </div>
 
           <button type="submit" className="submit-button">
             Sign In
           </button>
         </form>
-        {message && <p className='form-message'>{message}</p>}
+        {message && <p className="form-message">{message}</p>}
       </section>
     </main>
   );
