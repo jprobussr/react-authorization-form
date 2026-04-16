@@ -6,6 +6,7 @@ const App = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [messageType, setMessageType] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -20,13 +21,18 @@ const App = () => {
 
     if (!email || !password) {
       setMessage('Please fill out both fields.');
+      setMessageType('error');
       return;
     }
 
     setMessage('Successfully signed in!');
+    setMessageType('success');
     setEmail('');
     setPassword('');
+    setShowPassword(false);
   };
+
+  const isFormInvalid = !email || !password;
 
   return (
     <main className="page">
@@ -68,11 +74,15 @@ const App = () => {
             </button>
           </div>
 
-          <button type="submit" className="submit-button">
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isFormInvalid}
+          >
             Sign In
           </button>
         </form>
-        {message && <p className="form-message">{message}</p>}
+        {message && <p className={`form-message ${messageType}`}>{message}</p>}
       </section>
     </main>
   );
