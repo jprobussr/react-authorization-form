@@ -77,3 +77,9 @@
 .submit-button:hover {
   background: #4338ca;
 }
+
+.form-message {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
