@@ -36,6 +36,12 @@ const App = () => {
     setIsAuthorized(true);
   };
 
+  const handleSignOut = () => {
+    setIsAuthorized(false);
+    setMessage('');
+    setMessageType('');
+  };
+
   return (
     <main className="page">
       <section className="auth-card">
@@ -46,6 +52,10 @@ const App = () => {
             <p className="auth-description">
               You have successfully entered the authorization area.
             </p>
+
+            <button className="submit-button" onClick={handleSignOut}>
+              Sign Out
+            </button>
           </div>
         ) : (
           <>
